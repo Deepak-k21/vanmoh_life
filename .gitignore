@@ -1,0 +1,5 @@
+# Temporary work files and caches
+.work/
+*.log
+.DS_Store
+Thumbs.db
