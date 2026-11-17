@@ -257,18 +257,7 @@ h1 {
   background: rgba(255, 255, 255, 0.05);
 }
 
-.demo-login-btn {
-  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-  color: #ffffff !important;
-  border: none !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3) !important;
-}
 
-.demo-login-btn:hover {
-  background: linear-gradient(135deg, #d97706, #b45309) !important;
-  transform: translateY(-2px);
-}
 
 .home-help {
   font-size: 13px;
@@ -1484,8 +1473,7 @@ h1 {
         <div class="home-actions">
           <a class="button" href="#sign-in">Sign in <span class="button-arrow" aria-hidden="true">&rarr;</span></a>
           <a class="button secondary" href="#sign-up">Create an account</a>
-          <a class="button demo-login-btn" href="#dashboard">⚡ Demo Portal: Hi Kannan &rarr;</a>
-        </div>
+          </div>
         
         <!-- Quick Preview of 4 Financial Products with 3D Icons -->
         <div class="home-services-preview">
@@ -1518,7 +1506,6 @@ h1 {
           <div data-field="password"></div>
           <a class="recover" href="#forgot-password">Forgot password?</a>
           <button class="button" type="submit">Sign in</button>
-          <button class="button secondary demo-login-btn" type="button" onclick="location.hash='#dashboard'">⚡ Quick Demo Sign in as Kannan</button>
           <p class="form-status" role="status"></p>
         </form>
         <p class="switch">New to Vanmoh Life? <a href="#sign-up">Create an account</a></p>
@@ -1978,6 +1965,108 @@ h1 {
       else input.removeAttribute('aria-invalid');
     }
 
+    // =========================================================================
+    // VANMOH LIFE - AUTHENTICATION & USER SESSION SYSTEM
+    // =========================================================================
+    const STORAGE_USERS_KEY = 'vanmoh_users';
+    const STORAGE_SESSION_KEY = 'vanmoh_current_user';
+
+    function initUserDatabase() {
+      let users = [];
+      try {
+        const raw = localStorage.getItem(STORAGE_USERS_KEY);
+        if (raw) users = JSON.parse(raw);
+      } catch (e) {
+        users = [];
+      }
+
+      // Seed Kannan as the primary registered member if database is empty or missing Kannan
+      const hasKannan = users.some(u => u.mobile === '9876543210' || u.fullName.toLowerCase() === 'kannan');
+      if (!hasKannan) {
+        users.unshift({
+          mobile: '9876543210',
+          fullName: 'Kannan',
+          password: 'password123',
+          accountId: 'VL-7829-KA',
+          branch: 'Coimbatore Branch',
+          activeChits: 'Coimbatore Gold Plan #C-40',
+          totalSavings: '₹5,24,500',
+          dividendEarned: '₹24,500',
+          creditLine: '₹2,50,000',
+          monthlyChit: '₹10,000 / month',
+          nextDue: '₹9,020',
+          dueDate: '5th Dec 2026'
+        });
+        localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(users));
+      }
+      return users;
+    }
+
+    function getAllUsers() {
+      try {
+        const raw = localStorage.getItem(STORAGE_USERS_KEY);
+        return raw ? JSON.parse(raw) : initUserDatabase();
+      } catch (e) {
+        return initUserDatabase();
+      }
+    }
+
+    function saveUser(user) {
+      const users = getAllUsers();
+      const idx = users.findIndex(u => u.mobile === user.mobile);
+      if (idx >= 0) users[idx] = { ...users[idx], ...user };
+      else users.push(user);
+      localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(users));
+    }
+
+    function getCurrentSession() {
+      try {
+        const raw = localStorage.getItem(STORAGE_SESSION_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return null;
+    }
+
+    function setCurrentSession(user) {
+      localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(user));
+    }
+
+    function clearCurrentSession() {
+      localStorage.removeItem(STORAGE_SESSION_KEY);
+    }
+
+    // Initialize DB on script load
+    initUserDatabase();
+
+    function updateDashboardUser(user) {
+      if (!user) return;
+      const currentLang = localStorage.getItem('vanmoh-lang') || 'en';
+      const t = translations[currentLang] || translations.en;
+      
+      const greetingPrefix = t.greeting.replace('Kannan', '').trim();
+      const elGreeting = document.getElementById('dashboard-user-name');
+      if (elGreeting) {
+        elGreeting.textContent = greetingPrefix ? `${greetingPrefix} ${user.fullName}` : `Hi ${user.fullName}`;
+      }
+
+      const elPortfolioTitle = document.querySelector('.portfolio-title');
+      if (elPortfolioTitle) {
+        elPortfolioTitle.textContent = `${user.fullName}'s Portfolio Overview`;
+      }
+
+      const elPortfolioSub = document.querySelector('.portfolio-subtitle');
+      if (elPortfolioSub) {
+        elPortfolioSub.textContent = `Account ID: ${user.accountId} · ${user.branch || 'Coimbatore Branch'}`;
+      }
+
+      const metricBoxes = document.querySelectorAll('.portfolio-metrics-row .metric-box');
+      if (metricBoxes.length >= 3) {
+        if (user.totalSavings) metricBoxes[0].querySelector('.metric-value').textContent = user.totalSavings;
+        if (user.dividendEarned) metricBoxes[1].querySelector('.metric-value').textContent = user.dividendEarned;
+        if (user.creditLine) metricBoxes[2].querySelector('.metric-value').textContent = user.creditLine;
+      }
+    }
+
     for (const form of forms) {
       const status = form.querySelector('.form-status');
       form.addEventListener('input', ({ target }) => {
@@ -1998,17 +2087,89 @@ h1 {
           setError(input, message);
           if (message && !firstInvalid) firstInvalid = input;
         }
+
         if (firstInvalid) {
           firstInvalid.focus();
-        } else {
-          // Automatic login and navigation to member dashboard
-          if (form.dataset.form === 'sign-in' || form.dataset.form === 'sign-up') {
-            status.textContent = 'Welcome Kannan! Signing in to Vanmoh Life...';
-            setTimeout(() => {
-              location.hash = '#dashboard';
-            }, 300);
+          return;
+        }
+
+        const formType = form.dataset.form;
+
+        if (formType === 'sign-in') {
+          const rawMobile = form.elements.mobile.value;
+          const cleanMobile = rawMobile.replace(/[\s()-]/g, '').replace(/^\+91/, '');
+          const password = form.elements.password.value;
+
+          const users = getAllUsers();
+          const user = users.find(u => u.mobile === cleanMobile);
+
+          if (!user) {
+            status.textContent = `No account found with mobile number +91 ${cleanMobile}. Please create an account below.`;
+            return;
+          }
+
+          if (user.password && user.password !== password) {
+            status.textContent = 'Incorrect password. Please verify your password and try again.';
+            return;
+          }
+
+          // Authentic Sign-in success
+          setCurrentSession(user);
+          status.textContent = `Signing in... Welcome back, ${user.fullName}!`;
+          setTimeout(() => {
+            location.hash = '#dashboard';
+          }, 350);
+
+        } else if (formType === 'sign-up') {
+          const fullName = form.elements.fullName.value.trim();
+          const rawMobile = form.elements.mobile.value;
+          const cleanMobile = rawMobile.replace(/[\s()-]/g, '').replace(/^\+91/, '');
+          const password = form.elements.password.value;
+
+          const users = getAllUsers();
+          const existing = users.find(u => u.mobile === cleanMobile);
+
+          if (existing) {
+            status.textContent = `An account with mobile number +91 ${cleanMobile} already exists. Please sign in instead.`;
+            return;
+          }
+
+          // Authentic Account Creation
+          const initials = fullName.slice(0, 2).toUpperCase() || 'VL';
+          const randomId = Math.floor(1000 + Math.random() * 9000);
+          const newUser = {
+            mobile: cleanMobile,
+            fullName: fullName,
+            password: password,
+            accountId: `VL-${randomId}-${initials}`,
+            branch: 'Coimbatore Branch',
+            activeChits: 'Coimbatore Gold Plan #C-40',
+            totalSavings: '₹1,50,000',
+            dividendEarned: '₹12,500',
+            creditLine: '₹2,50,000',
+            monthlyChit: '₹10,000 / month',
+            nextDue: '₹9,020',
+            dueDate: '5th Dec 2026',
+            createdAt: new Date().toISOString()
+          };
+
+          saveUser(newUser);
+          setCurrentSession(newUser);
+          status.textContent = `Account created successfully! Welcome, ${fullName}. Redirecting to your dashboard...`;
+          setTimeout(() => {
+            location.hash = '#dashboard';
+          }, 400);
+
+        } else if (formType === 'forgot-password') {
+          const rawMobile = form.elements.mobile.value;
+          const cleanMobile = rawMobile.replace(/[\s()-]/g, '').replace(/^\+91/, '');
+          const users = getAllUsers();
+          const user = users.find(u => u.mobile === cleanMobile);
+
+          if (user) {
+            status.textContent = `Verification OTP sent to +91 ${cleanMobile}. Your registered password is: ${user.password}`;
           } else {
-            status.textContent = 'Password reset code sent to your registered mobile number.';
+            status.textContent = `No account found with mobile number +91 ${cleanMobile}. Please create an account.`;
           }
         }
       });
@@ -2040,10 +2201,24 @@ h1 {
       const homeLink = document.querySelector('#home-link');
       if (homeLink) homeLink.hidden = isHome;
 
+      let currentSession = getCurrentSession();
+
+      if (isDashboard) {
+        if (!currentSession) {
+          // If accessing dashboard directly, automatically load Kannan's account
+          const users = getAllUsers();
+          currentSession = users.find(u => u.fullName.toLowerCase() === 'kannan') || users[0];
+          if (currentSession) setCurrentSession(currentSession);
+        }
+        if (currentSession) {
+          updateDashboardUser(currentSession);
+        }
+      }
+
       const navSignIn = document.querySelector('#nav-sign-in');
       if (navSignIn) {
-        if (isDashboard) {
-          navSignIn.textContent = 'Hi Kannan (Active)';
+        if (currentSession && isDashboard) {
+          navSignIn.textContent = `${currentSession.fullName} (Active)`;
           navSignIn.href = '#dashboard';
         } else {
           navSignIn.textContent = 'Sign in';
@@ -2053,7 +2228,8 @@ h1 {
 
       const heading = active.querySelector('h1');
       if (heading) {
-        document.title = `${isHome ? 'Home' : (isDashboard ? 'Hi Kannan · Dashboard' : heading.textContent)} · Vanmoh Life`;
+        const titleName = currentSession ? currentSession.fullName : 'Kannan';
+        document.title = `${isHome ? 'Home' : (isDashboard ? `${titleName} · Dashboard` : heading.textContent)} · Vanmoh Life`;
         if (moveFocus) heading.focus();
       }
     }
@@ -2462,6 +2638,7 @@ h1 {
       // Logout handler
       if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
+          clearCurrentSession();
           if (settingsDialog && settingsDialog.open) settingsDialog.close();
           location.hash = '#sign-in';
         });
