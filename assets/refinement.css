@@ -132,10 +132,7 @@ h1 { font-weight:600; letter-spacing:-1.3px; }
 .screen { transform-origin:0 0; backface-visibility:hidden; }
 @media(prefers-reduced-motion:reduce) { .stage-canvas,.glint-flare,.star-sparkle { visibility:hidden; } }
 
-/* Home uses the real team photograph; account screens retain the interactive coin. */
-.staff-hero { display:none; width:100%; height:auto; object-fit:contain; border-radius:22px; border:1px solid var(--line); box-shadow:0 12px 30px #1647780d; }
-.panel.is-home .staff-hero { display:block; }
-.panel.is-home .interactive-stage { display:none; }
+/* Dashboard uses the staff photograph; home and account screens retain the coin. */
 .panel.is-home .member-visual { overflow:visible; background:transparent; border-radius:0; }
 .home-service-pill img.animated-service-icon { width:48px; height:48px; flex-shrink:0; border-radius:50%; object-fit:contain; background:#fff; }
 .quick-tile-icon { width:52px; height:52px; background:#fff; overflow:hidden; border:1px solid #e8edf5; }
@@ -162,7 +159,6 @@ h1 { font-weight:600; letter-spacing:-1.3px; }
 @keyframes loan-glide { 0%,100%{transform:translateX(0) rotate(0)} 40%{transform:translateX(3px) rotate(-3deg)} 70%{transform:translateX(-2px) rotate(2deg)} }
 @keyframes shield-pulse { 0%,100%{transform:scale(1)} 35%{transform:scale(1.075)} 55%{transform:scale(1)} 70%{transform:scale(1.04)} }
 @media(max-width:720px) {
-  .staff-hero { border-radius:18px; }
   .home-service-pill { padding:10px; gap:8px; font-size:12px; }
   .home-service-pill img.animated-service-icon { width:40px; height:40px; }
   .quick-tile-icon { width:46px; height:46px; }
@@ -218,4 +214,12 @@ h1 { font-weight:600; letter-spacing:-1.3px; }
   .service-3d-wrap { width:48px; height:48px; }
   .dash-brand-pill { font-size:11px; }
   .settings-pill-btn { padding:8px 12px; }
+}
+
+/* Keep the staff image inside the existing dashboard hero block. */
+.dashboard-team-photo { display:block; width:260px; max-width:100%; height:auto; object-fit:contain; border-radius:16px; border:1px solid #ffffff40; }
+.dash-hero-art { max-width:42%; }
+@media(max-width:720px) {
+  .dash-hero-art { width:100%; max-width:100%; }
+  .dashboard-team-photo { width:100%; border-radius:12px; }
 }
