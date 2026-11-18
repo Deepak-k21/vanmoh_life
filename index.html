@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#ffffff">
   <title>Vanmoh Life · Modern Financial Savings, Chits, Mutual Funds &amp; Loans</title>
   <meta name="description" content="Secure your financial future with Vanmoh Life: Govt. registered Chit Funds, Mutual Funds SIPs, Instant Cash Loans, and Comprehensive Life Insurance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
 @font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url("assets/inter-latin.woff2") format("woff2")}
 
@@ -1445,6 +1448,7 @@ h1 {
 }
 
   </style>
+  <link rel="stylesheet" href="assets/refinement.css">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -1478,19 +1482,19 @@ h1 {
         <!-- Quick Preview of 4 Financial Products with 3D Icons -->
         <div class="home-services-preview">
           <a href="#sign-in" class="home-service-pill">
-            <img src="assets/chit-funds-3d.jpg" alt="Chit Funds" width="36" height="36">
+            <svg class="animated-service-icon outline-service-icon icon-chit-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="19" rx="8" ry="3"/><path d="M4 19v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5 M4 23c0 1.7 3.6 3 8 3"/><g class="icon-moving-part"><circle cx="22" cy="10" r="7"/><path d="M19 7h6 M19 10h6 M20 7c4 0 4 5 0 5l4 3"/></g></svg>
             <span>Chit Funds</span>
           </a>
           <a href="#sign-in" class="home-service-pill">
-            <img src="assets/mutual-funds-3d.jpg" alt="Mutual Funds" width="36" height="36">
+            <svg class="animated-service-icon outline-service-icon icon-mutual-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5v22h23 M10 22v-5 M17 22v-9 M24 22v-6"/><path class="icon-moving-part" d="m9 12 7-6 5 4 7-6 M23 4h5v5"/></svg>
             <span>Mutual Funds</span>
           </a>
           <a href="#sign-in" class="home-service-pill">
-            <img src="assets/loans-3d.jpg" alt="Loans" width="36" height="36">
+            <svg class="animated-service-icon outline-service-icon icon-loans" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 20 5-2 7 4h7c3 0 4 3 1 4l-9 3-11-5 M14 21l4-6c1-2 4-1 3 1l-2 5"/><g class="icon-moving-part"><rect x="8" y="3" width="20" height="11" rx="2"/><circle cx="18" cy="8.5" r="2.5"/><path d="M11 8h1 M24 9h1"/></g></svg>
             <span>Instant Loans</span>
           </a>
           <a href="#sign-in" class="home-service-pill">
-            <img src="assets/insurance-3d.jpg" alt="Insurance" width="36" height="36">
+            <svg class="animated-service-icon outline-service-icon icon-insurance" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 3 11 4v9c0 6-7 11-11 13C12 27 5 22 5 16V7z"/><path class="icon-moving-part" d="m10 16 4 4 8-9"/></svg>
             <span>Life Insurance</span>
           </a>
         </div>
@@ -1582,7 +1586,7 @@ h1 {
 
         <!-- 2. Promotion Offer Strip (as seen in reference screenshot) -->
         <div class="dash-promo-card">
-          <div class="promo-badge-icon" aria-hidden="true">🏷️</div>
+          <div class="promo-badge-icon" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16 M5 15l5-5 4 3 5-8 M15 5h4v4"/></svg></div>
           <div class="promo-info">
             <strong>Get assured dividend up to 12% on your chit savings</strong>
             <span>Pre-approved instant personal loan limit ₹2.5L available today</span>
@@ -1593,19 +1597,19 @@ h1 {
         <!-- 3. Quick Action Category Tiles (matching 4 rounded icons in user screenshot) -->
         <div class="dash-quick-row" role="region" aria-label="Quick financial services">
           <button class="quick-tile" type="button" data-detail="chit">
-            <div class="quick-tile-icon icon-bg-gold">🪙</div>
+            <div class="quick-tile-icon icon-bg-gold"><svg class="animated-service-icon outline-service-icon icon-chit-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="19" rx="8" ry="3"/><path d="M4 19v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5 M4 23c0 1.7 3.6 3 8 3"/><g class="icon-moving-part"><circle cx="22" cy="10" r="7"/><path d="M19 7h6 M19 10h6 M20 7c4 0 4 5 0 5l4 3"/></g></svg></div>
             <span class="quick-tile-label">Chits</span>
           </button>
           <button class="quick-tile" type="button" data-detail="mutual">
-            <div class="quick-tile-icon icon-bg-green">📈</div>
+            <div class="quick-tile-icon icon-bg-green"><svg class="animated-service-icon outline-service-icon icon-mutual-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5v22h23 M10 22v-5 M17 22v-9 M24 22v-6"/><path class="icon-moving-part" d="m9 12 7-6 5 4 7-6 M23 4h5v5"/></svg></div>
             <span class="quick-tile-label">Mutual SIP</span>
           </button>
           <button class="quick-tile" type="button" data-detail="loan">
-            <div class="quick-tile-icon icon-bg-blue">⚡</div>
+            <div class="quick-tile-icon icon-bg-blue"><svg class="animated-service-icon outline-service-icon icon-loans" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 20 5-2 7 4h7c3 0 4 3 1 4l-9 3-11-5 M14 21l4-6c1-2 4-1 3 1l-2 5"/><g class="icon-moving-part"><rect x="8" y="3" width="20" height="11" rx="2"/><circle cx="18" cy="8.5" r="2.5"/><path d="M11 8h1 M24 9h1"/></g></svg></div>
             <span class="quick-tile-label">Fast Loans</span>
           </button>
           <button class="quick-tile" type="button" data-detail="insurance">
-            <div class="quick-tile-icon icon-bg-purple">🛡️</div>
+            <div class="quick-tile-icon icon-bg-purple"><svg class="animated-service-icon outline-service-icon icon-insurance" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 3 11 4v9c0 6-7 11-11 13C12 27 5 22 5 16V7z"/><path class="icon-moving-part" d="m10 16 4 4 8-9"/></svg></div>
             <span class="quick-tile-label">Insurance</span>
           </button>
         </div>
@@ -1617,7 +1621,7 @@ h1 {
           <div class="service-card" tabindex="0" role="article" aria-labelledby="title-chit" data-detail="chit">
             <div class="service-card-top">
               <div class="service-3d-wrap">
-                <img class="service-3d-img" src="assets/chit-funds-3d.jpg" alt="Chit Funds 3D" width="80" height="80" loading="lazy">
+                <svg class="service-3d-img animated-service-icon outline-service-icon icon-chit-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="19" rx="8" ry="3"/><path d="M4 19v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5 M4 23c0 1.7 3.6 3 8 3"/><g class="icon-moving-part"><circle cx="22" cy="10" r="7"/><path d="M19 7h6 M19 10h6 M20 7c4 0 4 5 0 5l4 3"/></g></svg>
               </div>
               <div class="service-meta">
                 <span class="service-tag tag-gold" id="stat-chit">12% Assured Dividend</span>
@@ -1639,7 +1643,7 @@ h1 {
           <div class="service-card" tabindex="0" role="article" aria-labelledby="title-mutual" data-detail="mutual">
             <div class="service-card-top">
               <div class="service-3d-wrap">
-                <img class="service-3d-img" src="assets/mutual-funds-3d.jpg" alt="Mutual Funds 3D" width="80" height="80" loading="lazy">
+                <svg class="service-3d-img animated-service-icon outline-service-icon icon-mutual-funds" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5v22h23 M10 22v-5 M17 22v-9 M24 22v-6"/><path class="icon-moving-part" d="m9 12 7-6 5 4 7-6 M23 4h5v5"/></svg>
               </div>
               <div class="service-meta">
                 <span class="service-tag tag-green" id="stat-mutual">SIP ₹500/mo</span>
@@ -1661,7 +1665,7 @@ h1 {
           <div class="service-card" tabindex="0" role="article" aria-labelledby="title-loans" data-detail="loan">
             <div class="service-card-top">
               <div class="service-3d-wrap">
-                <img class="service-3d-img" src="assets/loans-3d.jpg" alt="Loans 3D" width="80" height="80" loading="lazy">
+                <svg class="service-3d-img animated-service-icon outline-service-icon icon-loans" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 20 5-2 7 4h7c3 0 4 3 1 4l-9 3-11-5 M14 21l4-6c1-2 4-1 3 1l-2 5"/><g class="icon-moving-part"><rect x="8" y="3" width="20" height="11" rx="2"/><circle cx="18" cy="8.5" r="2.5"/><path d="M11 8h1 M24 9h1"/></g></svg>
               </div>
               <div class="service-meta">
                 <span class="service-tag tag-blue" id="stat-loans">From 8.9% p.a.</span>
@@ -1683,7 +1687,7 @@ h1 {
           <div class="service-card" tabindex="0" role="article" aria-labelledby="title-insurance" data-detail="insurance">
             <div class="service-card-top">
               <div class="service-3d-wrap">
-                <img class="service-3d-img" src="assets/insurance-3d.jpg" alt="Insurance 3D" width="80" height="80" loading="lazy">
+                <svg class="service-3d-img animated-service-icon outline-service-icon icon-insurance" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 3 11 4v9c0 6-7 11-11 13C12 27 5 22 5 16V7z"/><path class="icon-moving-part" d="m10 16 4 4 8-9"/></svg>
               </div>
               <div class="service-meta">
                 <span class="service-tag tag-purple" id="stat-insurance">₹2 Cr Protection</span>
@@ -1742,7 +1746,7 @@ h1 {
 
         <!-- 6. Trust & Security Strip (matching user screenshot) -->
         <div class="dash-trust-badge">
-          <div class="trust-shield-icon">🔒</div>
+          <div class="trust-shield-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6z M8 12l3 3 5-6"/></svg></div>
           <div class="trust-text">
             <span>Bill &amp; Chit payments secured by <strong>Bharat Connect</strong></span>
             <p>Regulated under Tamil Nadu Chit Funds Act 1982 &amp; SEBI Investment Guidelines · ISO 27001 Certified</p>
@@ -1752,19 +1756,19 @@ h1 {
         <!-- 7. Mobile App Bottom Navigation Bar -->
         <nav class="mobile-bottom-bar" aria-label="Mobile bottom navigation">
           <a href="#dashboard" class="mobile-nav-item active">
-            <span class="mobile-nav-icon">🏠</span>
+            <span class="mobile-nav-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-7 9 7 M5 9v12h14V9 M9 21v-8h6v8"/></svg></span>
             <span>Home</span>
           </a>
           <a href="#dashboard" class="mobile-nav-item" onclick="document.querySelector('#title-chit').scrollIntoView({behavior:'smooth'})">
-            <span class="mobile-nav-icon">🪙</span>
+            <span class="mobile-nav-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v4H8z M6 8h12v12H6z M9 12h6 M9 16h6"/></svg></span>
             <span>Chits</span>
           </a>
           <a href="#dashboard" class="mobile-nav-item" onclick="document.querySelector('.portfolio-summary-card').scrollIntoView({behavior:'smooth'})">
-            <span class="mobile-nav-icon">📊</span>
+            <span class="mobile-nav-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v14H4z M8 7V3h8v4 M4 12h16"/></svg></span>
             <span>Portfolio</span>
           </a>
           <button type="button" class="mobile-nav-item" onclick="document.getElementById('open-settings-btn').click()">
-            <span class="mobile-nav-icon">⚙️</span>
+            <span class="mobile-nav-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M12 2v3 M12 19v3 M2 12h3 M19 12h3"/></svg></span>
             <span>Settings</span>
           </button>
         </nav>
@@ -1772,8 +1776,9 @@ h1 {
       </section>
 
       <!-- Interactive 3D Visual Stage with Silk Waves & Parallax Zoom -->
-      <aside class="member-visual" aria-label="Plan your future with Vanmoh Life">
-        <div class="interactive-stage" id="interactive-stage" role="region" aria-label="Interactive 3D Vanmoh Life savings visual with silk ribbon and parallax zoom">
+      <aside class="member-visual" aria-label="Vanmoh Life">
+        <img class="staff-hero" src="assets/vanmoh-team.png" alt="Vanmoh staff at a company appreciation event" width="2048" height="1150" fetchpriority="high" decoding="async">
+        <div class="interactive-stage" id="interactive-stage" role="button" tabindex="0" aria-label="Animate the Vanmoh savings coin. Click or press Enter.">
           <canvas class="stage-canvas bg-canvas" id="canvas-bg" width="1024" height="820"></canvas>
           <div class="coin-hero-wrapper" id="coin-hero">
             <img class="member-art" src="assets/vanmoh-savings.png" alt="3D golden rupee coin and rising coin stacks with blue ribbon" width="1024" height="819" fetchpriority="high">
@@ -1874,6 +1879,7 @@ h1 {
     <p class="field-error" hidden></p>
   </template>
 
+  <script src="assets/page-turn.js"></script>
   <script>
     const fields = {
       fullName: { label: 'Full name', placeholder: 'Enter full name', type: 'text', autocomplete: 'name', maxLength: 100 },
@@ -2239,7 +2245,7 @@ h1 {
       document.querySelector('main').focus();
     });
     renderScreen(false);
-    window.addEventListener('hashchange', () => renderScreen(true));
+    window.addEventListener('hashchange', () => changeScreenWithTurn(() => renderScreen(true)));
 
     const supportLinks = '<p><a href="tel:+919361805480">+91 93618 05480</a><br><a href="mailto:reach@vanmohlife.com">reach@vanmohlife.com</a></p>';
     const dialogContent = {
@@ -2695,6 +2701,7 @@ h1 {
       const W = bgCanvas.width;
       const H = bgCanvas.height;
 
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       let time = 0;
       let targetScale = 1.0;
       let currentScale = 1.0;
@@ -2808,6 +2815,14 @@ h1 {
       }
 
       function animate() {
+        if (stage.offsetParent === null || document.hidden) {
+          requestAnimationFrame(animate); return;
+        }
+        if (reducedMotion.matches) {
+          hero.style.transform = "none";
+          bgCtx.clearRect(0, 0, W, H); fgCtx.clearRect(0, 0, W, H);
+          requestAnimationFrame(animate); return;
+        }
         time += 0.016;
 
         bgCtx.clearRect(0, 0, W, H);
@@ -2875,19 +2890,18 @@ h1 {
 
       stage.addEventListener('click', (e) => {
         const rect = stage.getBoundingClientRect();
-        const rx = (e.clientX - rect.left) * (W / rect.width);
-        const ry = (e.clientY - rect.top) * (H / rect.height);
+        const rx = e.detail === 0 ? W / 2 : (e.clientX - rect.left) * (W / rect.width);
+        const ry = e.detail === 0 ? H / 2 : (e.clientY - rect.top) * (H / rect.height);
         clickRipples.push({ x: rx, y: ry, radius: 10, speed: 7, alpha: 0.95 });
         targetScale = 1.08;
         setTimeout(() => { targetScale = 1.04; }, 260);
       });
 
+      stage.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); stage.click(); }
+      });
       animate();
     })();
   </script>
 </body>
 </html>
-`;
-
-fs.writeFileSync('D:/vanmoh/index.html', updatedHtml, 'utf8');
-console.log('Successfully wrote updated index.html, size:', updatedHtml.length);
