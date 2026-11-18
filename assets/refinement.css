@@ -216,10 +216,792 @@ h1 { font-weight:600; letter-spacing:-1.3px; }
   .settings-pill-btn { padding:8px 12px; }
 }
 
-/* Keep the staff image inside the existing dashboard hero block. */
-.dashboard-team-photo { display:block; width:260px; max-width:100%; height:auto; object-fit:contain; border-radius:16px; border:1px solid #ffffff40; }
-.dash-hero-art { max-width:42%; }
+/* User profile avatar circle in dashboard hero */
+.dashboard-profile-avatar {
+  display: block;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 3.5px solid #ffffffeb;
+  box-shadow: 0 8px 24px #00000030;
+  background: #ffffff;
+}
+.dash-hero-art {
+  width: auto;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dash-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 @media(max-width:720px) {
-  .dash-hero-art { width:100%; max-width:100%; }
-  .dashboard-team-photo { width:100%; border-radius:12px; }
+  .dash-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .dash-hero-art {
+    width: auto;
+    max-width: none;
+  }
+  .dashboard-profile-avatar {
+    width: 76px;
+    height: 76px;
+    border-width: 3px;
+  }
+}
+
+
+/* =========================================================================
+   DESKTOP HEADER SETTINGS ICON NEXT TO SIGN-IN
+   ========================================================================= */
+.nav-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.nav-icon-btn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(17, 85, 160, 0.05);
+  transform: rotate(20deg);
+}
+
+.nav-icon-btn .ui-icon {
+  width: 19px;
+  height: 19px;
+}
+
+@media(max-width: 720px) {
+  .nav-icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* =========================================================================
+   REALISTIC FINANCIAL SETTINGS DIALOG (VANMOH PALETTE)
+   ========================================================================= */
+.settings-dialog {
+  width: min(500px, calc(100% - 32px));
+  max-height: min(86vh, 680px);
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 28px;
+  background: var(--card-bg);
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(17, 85, 160, 0.16), 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.settings-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.settings-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.settings-header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-brand-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.settings-dialog-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  margin: 0;
+  color: var(--ink);
+}
+
+.dialog-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.dialog-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ink);
+}
+
+/* Member Session Info Strip in Settings */
+.settings-user-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: rgba(17, 85, 160, 0.05);
+  border: 1px solid rgba(17, 85, 160, 0.14);
+  border-radius: 16px;
+  margin-bottom: 22px;
+}
+
+.settings-user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.settings-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.settings-user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-user-info strong {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-user-info span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.settings-active-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 3px 9px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .settings-active-pill {
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+
+/* Settings Groups & Labels */
+.settings-group {
+  margin-bottom: 22px;
+}
+
+.settings-group-header {
+  margin-bottom: 10px;
+}
+
+.settings-group-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.settings-group-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Theme Cards (Replaces AI emojis with refined fintech cards) */
+.theme-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.theme-card-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  text-align: left;
+}
+
+.theme-card-btn:hover {
+  border-color: var(--card-hover-border);
+  transform: translateY(-1px);
+}
+
+.theme-card-btn.active {
+  border-color: var(--blue);
+  background: rgba(17, 85, 160, 0.05);
+  box-shadow: 0 4px 14px rgba(17, 85, 160, 0.1);
+}
+
+.theme-card-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.theme-card-btn.active .theme-card-icon-wrap {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.theme-svg-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-card-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-card-text strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.theme-card-text span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.theme-check-indicator {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.theme-card-btn.active .theme-check-indicator {
+  opacity: 1;
+}
+
+/* Language Selector Wrapper with Globe Icon */
+.lang-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lang-globe-icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+  pointer-events: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.lang-select-wrapper .lang-select {
+  width: 100%;
+  padding: 13px 38px 13px 42px;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.lang-select-wrapper .lang-select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(17, 85, 160, 0.12);
+}
+
+.lang-select-arrow {
+  position: absolute;
+  right: 16px;
+  color: var(--muted);
+  pointer-events: none;
+  font-size: 12px;
+}
+
+/* Logout Button (Restrained Corporate Styling) */
+.settings-logout-group {
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.logout-action-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(220, 38, 38, 0.05) !important;
+  border: 1px solid rgba(220, 38, 38, 0.25) !important;
+  color: #b91c1c !important;
+  border-radius: 14px;
+  min-height: 48px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+}
+
+.logout-action-btn:hover {
+  background: rgba(220, 38, 38, 0.1) !important;
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+}
+
+[data-theme="dark"] .logout-action-btn {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .logout-action-btn:hover {
+  background: rgba(239, 68, 68, 0.18) !important;
+}
+
+/* =========================================================================
+   IMMERSIVE FULL-SCREEN VANMOH LIFE AUTH TRANSITION (NO TINY BOX)
+   ========================================================================= */
+.auth-transition-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--ink);
+  opacity: 1;
+  transition: opacity 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .auth-transition-overlay {
+  background: #0b1120;
+}
+
+.auth-transition-overlay[hidden] {
+  display: none !important;
+}
+
+/* Fullscreen Content Area (No borders, no box, no shadow) */
+.auth-fs-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: min(640px, calc(100% - 36px));
+  margin: auto 0;
+  padding: 20px 0;
+  animation: authFsAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes authFsAppear {
+  0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-fs-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: rgba(17, 85, 160, 0.08);
+  color: var(--blue);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+[data-theme="dark"] .auth-fs-pill {
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+}
+
+.auth-fs-sparkle {
+  color: #d97706;
+}
+
+.auth-fs-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.auth-fs-logo {
+  width: clamp(230px, 42vw, 340px);
+  height: auto;
+  display: block;
+  animation: fsLogoBreath 2.4s ease-in-out infinite;
+}
+
+@keyframes fsLogoBreath {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.94; }
+}
+
+/* Circular Spinner Ring */
+.auth-fs-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(17, 85, 160, 0.15);
+  border-top-color: var(--blue);
+  border-right-color: #3b82f6;
+  animation: fsSpin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+[data-theme="dark"] .auth-fs-spinner {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-top-color: #60a5fa;
+  border-right-color: #3b82f6;
+}
+
+@keyframes fsSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dynamic Status Texts */
+.auth-fs-texts {
+  margin-bottom: 24px;
+}
+
+.auth-fs-title {
+  font-size: clamp(22px, 3.4vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+
+.auth-fs-sub {
+  font-size: clamp(14px, 1.8vw, 15.5px);
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 460px;
+}
+
+/* Wide Fullscreen Progress Track */
+.auth-fs-progress-wrap {
+  width: min(440px, 100%);
+  margin-bottom: 20px;
+}
+
+.auth-fs-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(17, 85, 160, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .auth-fs-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-fs-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1155a0, #2563eb, #38bdf8);
+  border-radius: 999px;
+  transition: width 1.15s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Bottom Security Watermark */
+.auth-fs-footer {
+  margin-top: auto;
+  padding-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  width: 100%;
+  padding-inline: 24px;
+}
+
+.auth-fs-footer svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+
+/* Vanmoh Life Lottie Fluid Animation */
+.auth-lottie-wrap {
+  width: min(580px, 94vw);
+  height: clamp(190px, 28vh, 280px);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  filter: drop-shadow(0 8px 28px rgba(17, 85, 160, 0.3));
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .auth-lottie-wrap {
+  filter: drop-shadow(0 0 22px rgba(59, 130, 246, 0.55));
+}
+
+.auth-lottie-player {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-lottie-player svg {
+  width: 100% !important;
+  height: 100% !important;
+  transform: scale(1.22);
+  transform-origin: center center;
+  overflow: visible !important;
+}
+
+
+/* =========================================================================
+   SETTINGS DIALOG EXPANDED CONTROLS & SWITCHES
+   ========================================================================= */
+.settings-section-divider {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.settings-toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.settings-toggle-row:hover {
+  border-color: var(--card-hover-border);
+}
+
+.settings-toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-toggle-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.settings-toggle-desc {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Realistic Fintech iOS-style Switch */
+.settings-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.settings-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.settings-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--line);
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px;
+}
+
+.settings-slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.settings-switch input:checked + .settings-slider {
+  background-color: var(--blue);
+}
+
+.settings-switch input:focus-visible + .settings-slider {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.settings-switch input:checked + .settings-slider::before {
+  transform: translateX(20px);
+}
+
+/* Privacy Masking on Dashboard */
+.privacy-masked .metric-value,
+.privacy-masked .card-balance,
+.privacy-masked #dash-total-savings,
+.privacy-masked #dash-dividend-earned,
+.privacy-masked #dash-credit-line {
+  filter: blur(5px);
+  user-select: none;
+  transition: filter 0.2s ease;
+}
+
+/* =========================================================================
+   NO SCROLLBARS: Hide scrollbar tracks completely across all elements
+   ========================================================================= */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+html, body, dialog, .dialog, .settings-dialog {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+dialog::-webkit-scrollbar,
+.dialog::-webkit-scrollbar,
+.settings-dialog::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
